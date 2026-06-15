@@ -5,6 +5,14 @@ builder.Services.AddScoped<VagrantfileGenerator>();
 builder.Services.AddScoped<ProcessRunner>();
 builder.Services.AddScoped<LabOrchestrationService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
 
 
 builder.Services.AddControllers();
@@ -18,11 +26,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseStaticFiles();
+app.UseCors();
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

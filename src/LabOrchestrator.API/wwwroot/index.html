@@ -1,0 +1,626 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AD Lab Orchestrator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap');
+
+        :root {
+            --bg: #0a0a0a;
+            --bg2: #111111;
+            --bg3: #1a1a1a;
+            --border: #222222;
+            --border2: #2a2a2a;
+            --text: #e0e0e0;
+            --muted: #555555;
+            --accent: #00ff88;
+            --accent2: #00cc6a;
+            --danger: #ff4444;
+            --warn: #ffaa00;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 14px;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 48px 1fr;
+            grid-template-columns: 320px 1fr;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            grid-column: 1 / -1;
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            gap: 16px;
+        }
+
+        .topbar-logo {
+            font-family: var(--mono);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+
+            .topbar-logo span {
+                color: var(--muted);
+            }
+
+        .topbar-status {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--muted);
+            transition: background 0.3s;
+        }
+
+            .status-dot.running {
+                background: var(--accent);
+                box-shadow: 0 0 6px var(--accent);
+            }
+
+            .status-dot.error {
+                background: var(--danger);
+            }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            padding: 24px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            padding: 0 20px;
+            margin-bottom: 28px;
+        }
+
+        .sidebar-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+            .field label {
+                display: block;
+                font-size: 11px;
+                color: var(--muted);
+                margin-bottom: 4px;
+                font-family: var(--mono);
+            }
+
+            .field input, .field select {
+                width: 100%;
+                background: var(--bg3);
+                border: 1px solid var(--border2);
+                color: var(--text);
+                font-family: var(--mono);
+                font-size: 12px;
+                padding: 7px 10px;
+                border-radius: 4px;
+                outline: none;
+                transition: border-color 0.15s;
+            }
+
+                .field input:focus, .field select:focus {
+                    border-color: var(--accent);
+                }
+
+                .field select option {
+                    background: var(--bg3);
+                }
+
+        .presets {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .preset-btn {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 10px;
+            padding: 8px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.15s;
+            line-height: 1.4;
+        }
+
+            .preset-btn:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+            .preset-btn .preset-name {
+                font-weight: 500;
+                display: block;
+            }
+
+            .preset-btn .preset-sub {
+                font-size: 9px;
+                opacity: 0.6;
+            }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 20px 24px;
+        }
+
+        /* ACTION BUTTONS */
+        .actions {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            letter-spacing: 0.03em;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+
+            .btn-primary:hover {
+                background: var(--accent2);
+                border-color: var(--accent2);
+            }
+
+            .btn-primary:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border2);
+            color: var(--muted);
+        }
+
+            .btn-outline:hover {
+                border-color: var(--muted);
+                color: var(--text);
+            }
+
+        .btn-danger {
+            background: transparent;
+            border-color: var(--danger);
+            color: var(--danger);
+            opacity: 0.6;
+        }
+
+            .btn-danger:hover {
+                opacity: 1;
+            }
+
+        /* MAIN */
+        .main {
+            display: grid;
+            grid-template-rows: 1fr 180px;
+            overflow: hidden;
+        }
+
+        /* LOG PANEL */
+        .log-panel {
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .log-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .log-header-title {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .log-clear {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 10px;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 3px;
+            transition: color 0.15s;
+        }
+
+            .log-clear:hover {
+                color: var(--text);
+            }
+
+        .log-entries {
+            flex: 1;
+            font-family: var(--mono);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .log-entry {
+            display: flex;
+            gap: 12px;
+            padding: 2px 0;
+            border-bottom: 1px solid transparent;
+        }
+
+            .log-entry:hover {
+                background: var(--bg2);
+            }
+
+        .log-time {
+            color: var(--muted);
+            font-size: 10px;
+            flex-shrink: 0;
+            padding-top: 2px;
+            min-width: 60px;
+        }
+
+        .log-text {
+            color: var(--text);
+            word-break: break-all;
+        }
+
+            .log-text.info {
+                color: #4488ff;
+            }
+
+            .log-text.success {
+                color: var(--accent);
+            }
+
+            .log-text.warn {
+                color: var(--warn);
+            }
+
+            .log-text.error {
+                color: var(--danger);
+            }
+
+        .log-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 12px;
+        }
+
+        /* VAGRANTFILE PREVIEW */
+        .preview-panel {
+            border-top: 1px solid var(--border);
+            background: var(--bg2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .preview-header-title {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .preview-content {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            padding: 12px 24px;
+            overflow-y: auto;
+            white-space: pre;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+            .preview-content .kw {
+                color: #c792ea;
+            }
+
+            .preview-content .str {
+                color: #c3e88d;
+            }
+
+            .preview-content .num {
+                color: #f78c6c;
+            }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 2px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--muted);
+            }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-logo">AD<span>/</span>Lab <span>//</span> orchestrator</div>
+        <div class="topbar-status">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="statusText">idle</span>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-label">Presets</div>
+            <div class="presets">
+                <button class="preset-btn" onclick="applyPreset('small')">
+                    <span class="preset-name">Small</span>
+                    <span class="preset-sub">DC + 1 WS</span>
+                </button>
+                <button class="preset-btn" onclick="applyPreset('medium')">
+                    <span class="preset-name">Medium</span>
+                    <span class="preset-sub">DC + 3 WS</span>
+                </button>
+                <button class="preset-btn" onclick="applyPreset('enterprise')">
+                    <span class="preset-name">Enterprise</span>
+                    <span class="preset-sub">DC + 5 WS</span>
+                </button>
+                <button class="preset-btn" onclick="applyPreset('custom')">
+                    <span class="preset-name">Custom</span>
+                    <span class="preset-sub">manual</span>
+                </button>
+            </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="sidebar-section">
+            <div class="sidebar-label">Domain</div>
+            <div class="field">
+                <label>domain name</label>
+                <input type="text" id="domainName" value="corp.local" />
+            </div>
+            <div class="field">
+                <label>admin password</label>
+                <input type="password" id="adminPassword" value="Admin123!" />
+            </div>
+            <div class="field">
+                <label>vagrant box</label>
+                <input type="text" id="vagrantBox" value="gusztavvargadr/windows-server" />
+            </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="sidebar-section">
+            <div class="sidebar-label">Machines</div>
+            <div class="field">
+                <label>workstation count</label>
+                <input type="number" id="wsCount" value="1" min="1" max="10" />
+            </div>
+            <div class="field">
+                <label>dc ram (mb)</label>
+                <input type="number" id="dcRam" value="2048" step="512" />
+            </div>
+            <div class="field">
+                <label>workstation ram (mb)</label>
+                <input type="number" id="wsRam" value="1024" step="512" />
+            </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="actions">
+            <button class="btn btn-outline" onclick="generateVagrantfile()">generate vagrantfile</button>
+            <button class="btn btn-primary" id="startBtn" onclick="startLab()">start lab</button>
+            <button class="btn btn-danger" onclick="stopLab()">stop lab</button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="log-panel">
+            <div class="log-header">
+                <span class="log-header-title">output</span>
+                <button class="log-clear" onclick="clearLogs()">clear</button>
+            </div>
+            <div class="log-entries" id="logEntries">
+                <div class="log-empty" id="logEmpty">waiting for output...</div>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <div class="preview-header">
+                <span class="preview-header-title">vagrantfile preview</span>
+            </div>
+            <div class="preview-content" id="vagrantPreview"># generate a vagrantfile to see preview</div>
+        </div>
+    </main>
+
+    <script>
+        const API = '/api';
+  let eventSource = null;
+
+  function getConfig() {
+    const wsCount = parseInt(document.getElementById('wsCount').value) || 1;
+    const machines = [{ machineName: 'DC01', type: 0, machineRam: parseInt(document.getElementById('dcRam').value), cpuCount: 2 }];
+    for (let i = 1; i <= wsCount; i++) {
+      machines.push({ machineName: `WS0${i}`, type: 1, machineRam: parseInt(document.getElementById('wsRam').value), cpuCount: 1 });
+    }
+    return {
+      domainName: document.getElementById('domainName').value,
+      adminPassword: document.getElementById('adminPassword').value,
+      vagrantBox: document.getElementById('vagrantBox').value,
+      machineConfigs: machines
+    };
+  }
+
+  function applyPreset(name) {
+    const presets = {
+      small:      { ws: 1, dcRam: 2048, wsRam: 1024 },
+      medium:     { ws: 3, dcRam: 2048, wsRam: 1024 },
+      enterprise: { ws: 5, dcRam: 4096, wsRam: 2048 },
+      custom:     { ws: 1, dcRam: 2048, wsRam: 1024 }
+    };
+    const p = presets[name];
+    document.getElementById('wsCount').value = p.ws;
+    document.getElementById('dcRam').value = p.dcRam;
+    document.getElementById('wsRam').value = p.wsRam;
+    addLog(`preset applied: ${name}`, 'info');
+  }
+
+  function addLog(text, type = '') {
+    const empty = document.getElementById('logEmpty');
+    if (empty) empty.remove();
+    const entries = document.getElementById('logEntries');
+    const now = new Date();
+    const time = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
+    const el = document.createElement('div');
+    el.className = 'log-entry';
+    el.innerHTML = `<span class="log-time">${time}</span><span class="log-text ${type}">${text}</span>`;
+    entries.appendChild(el);
+    entries.scrollTop = entries.scrollHeight;
+  }
+
+  function clearLogs() {
+    document.getElementById('logEntries').innerHTML = '<div class="log-empty" id="logEmpty">waiting for output...</div>';
+  }
+
+  function setStatus(state) {
+    const dot = document.getElementById('statusDot');
+    const txt = document.getElementById('statusText');
+    dot.className = `status-dot ${state}`;
+    txt.textContent = state;
+  }
+
+  async function generateVagrantfile() {
+    try {
+      const res = await fetch(`${API}/Lab/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(getConfig())
+      });
+      const text = await res.text();
+      document.getElementById('vagrantPreview').textContent = text;
+      addLog('vagrantfile generated', 'success');
+    } catch (e) {
+      addLog(`error: ${e.message}`, 'error');
+    }
+  }
+
+  async function startLab() {
+    setStatus('running');
+    addLog('starting lab...', 'info');
+    document.getElementById('startBtn').disabled = true;
+
+    if (eventSource) eventSource.close();
+    eventSource = new EventSource(`${API}/Status/stream`);
+    eventSource.onmessage = e => addLog(e.data);
+    eventSource.onerror = () => { addLog('stream closed', 'warn'); setStatus('idle'); document.getElementById('startBtn').disabled = false; };
+
+    try {
+      await fetch(`${API}/Lab/start`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(getConfig())
+      });
+      addLog('lab started', 'success');
+      setStatus('idle');
+    } catch (e) {
+      addLog(`error: ${e.message}`, 'error');
+      setStatus('error');
+    }
+    document.getElementById('startBtn').disabled = false;
+  }
+
+  function stopLab() {
+    if (eventSource) { eventSource.close(); eventSource = null; }
+    setStatus('idle');
+    addLog('lab stopped', 'warn');
+  }
+    </script>
+</body>
+</html>
