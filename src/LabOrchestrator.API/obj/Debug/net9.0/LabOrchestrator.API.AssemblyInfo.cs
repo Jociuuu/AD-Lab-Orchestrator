@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LabOrchestrator.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3e3c1a3a033126addf8f94f585a65518752170c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90a11916930874332a31e51e29f0cf2b5edf8796")]
 [assembly: System.Reflection.AssemblyProductAttribute("LabOrchestrator.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LabOrchestrator.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

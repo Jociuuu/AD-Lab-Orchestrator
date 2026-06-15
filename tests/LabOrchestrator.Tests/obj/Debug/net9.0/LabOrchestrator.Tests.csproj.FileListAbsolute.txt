@@ -100,3 +100,4 @@ C:\Users\Jociu\Desktop\LabOrchestrator\tests\LabOrchestrator.Tests\bin\Debug\net
 C:\Users\Jociu\Desktop\LabOrchestrator\tests\LabOrchestrator.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_LabOrchestrator.Tests
 C:\Users\Jociu\Desktop\LabOrchestrator\tests\LabOrchestrator.Tests\bin\Debug\net9.0\LabOrchestrator.Core.dll
 C:\Users\Jociu\Desktop\LabOrchestrator\tests\LabOrchestrator.Tests\bin\Debug\net9.0\LabOrchestrator.Core.pdb
+C:\Users\Jociu\Desktop\LabOrchestrator\tests\LabOrchestrator.Tests\obj\Debug\net9.0\LabOrchestrator.Tests.sourcelink.json

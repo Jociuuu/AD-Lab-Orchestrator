@@ -122,4 +122,4 @@ C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.API\obj\Debug\net9.0\
 C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.API\obj\Debug\net9.0\ref\LabOrchestrator.API.dll
 C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.API\obj\Debug\net9.0\LabOrchestrator.API.sourcelink.json
 C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.API\bin\Debug\net9.0\LabOrchestrator.API.staticwebassets.runtime.json
-C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.API\obj\Debug\net9.0\compressed\h8ge1r600u-tbphnaovyh.gz
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.API\obj\Debug\net9.0\compressed\h8ge1r600u-vfdsew2z3c.gz

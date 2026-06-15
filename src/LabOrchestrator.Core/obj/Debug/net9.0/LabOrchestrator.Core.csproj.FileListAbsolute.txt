@@ -9,3 +9,4 @@ C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0
 C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\refint\LabOrchestrator.Core.dll
 C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.pdb
 C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\ref\LabOrchestrator.Core.dll
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.sourcelink.json
