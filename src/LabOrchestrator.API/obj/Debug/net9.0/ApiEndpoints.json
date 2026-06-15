@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "LabOrchestrator.API.Controllers.LabController",
+    "Method": "Generate",
+    "RelativePath": "api/Lab/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "config",
+        "Type": "LabOrchestrator.Core.Models.LabConfig",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LabOrchestrator.API.Controllers.LabController",
+    "Method": "StartLab",
+    "RelativePath": "api/Lab/start",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "config",
+        "Type": "LabOrchestrator.Core.Models.LabConfig",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

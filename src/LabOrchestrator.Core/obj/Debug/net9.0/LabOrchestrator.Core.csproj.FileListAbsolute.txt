@@ -1,0 +1,11 @@
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\bin\Debug\net9.0\LabOrchestrator.Core.deps.json
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\bin\Debug\net9.0\LabOrchestrator.Core.dll
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\bin\Debug\net9.0\LabOrchestrator.Core.pdb
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.AssemblyInfoInputs.cache
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.AssemblyInfo.cs
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.csproj.CoreCompileInputs.cache
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.dll
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\refint\LabOrchestrator.Core.dll
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\LabOrchestrator.Core.pdb
+C:\Users\Jociu\Desktop\LabOrchestrator\src\LabOrchestrator.Core\obj\Debug\net9.0\ref\LabOrchestrator.Core.dll
