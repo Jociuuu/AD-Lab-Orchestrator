@@ -34,10 +34,9 @@ namespace LabOrchestrator.Core.Services
                 sb.AppendLine("end");
                 if (machine.Type == MachineType.DomainController)
 
-                    sb.AppendLine("vm.vm.provision \"shell\", path: \"scripts/setup-ad.ps1\"");
+                    sb.AppendLine($"vm.vm.provision \"shell\", path: \"scripts/setup-ad.ps1\", args: [\"{config.DomainName}\", \"{config.DomainName.Split('.')[0].ToUpper()}\", \"{config.AdminPassword}\"]");
                 else
-                    sb.AppendLine("vm.vm.provision \"shell\", path: \"scripts/join-domain.ps1\"");
-
+                    sb.AppendLine($"vm.vm.provision \"shell\", path: \"scripts/join-domain.ps1\", args: [\"{machine.MachineName}\", \"{config.DomainName}\", \"{config.DomainControllerIp}\", \"{config.AdminPassword}\"]");
                 sb.AppendLine("end");
             }
 

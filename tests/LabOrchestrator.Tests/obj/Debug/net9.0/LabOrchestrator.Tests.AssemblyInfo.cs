@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LabOrchestrator.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90a11916930874332a31e51e29f0cf2b5edf8796")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1837584b6962e533e91b0872b8494483be539913")]
 [assembly: System.Reflection.AssemblyProductAttribute("LabOrchestrator.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LabOrchestrator.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
